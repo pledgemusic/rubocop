@@ -72,6 +72,8 @@ module RuboCop
     end
 
     def to_inspect?(file, hidden_files, base_dir_config)
+      return true if file =~ %r{^/var/folders}
+
       return false if base_dir_config.file_to_exclude?(file)
       unless hidden_files.include?(file)
         return true if File.extname(file) == '.rb'
